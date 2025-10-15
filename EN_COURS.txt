@@ -1,0 +1,59 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🚂 DÉPLOIEMENT RAILWAY EN COURS                 ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+✅ CE QUI EST DÉJÀ FAIT :
+
+   ✓ Railway CLI configuré
+   ✓ Projet "show room pro" créé et lié
+   ✓ PostgreSQL ajouté
+   ✓ Script de déploiement automatique lancé
+   ✓ Railway ouvert dans votre navigateur
+
+
+🔄 CE QUI SE PASSE MAINTENANT :
+
+   Railway s'est ouvert dans votre navigateur
+   → Suivez le guide GUIDE_VISUEL_RAILWAY.md
+
+
+📋 ACTIONS À FAIRE (5 minutes) :
+
+   1️⃣  Sur Railway, créer service "backend"
+       - Root Directory: backend
+       - Variables: (copiez depuis le guide)
+
+   2️⃣  Créer service "storefront"  
+       - Root Directory: storefront
+       - Variables: (copiez depuis le guide)
+
+   3️⃣  Attendre que backend soit déployé (vert)
+
+   4️⃣  Revenir au terminal et appuyer sur ENTRÉE
+
+
+📚 GUIDES DISPONIBLES :
+
+   - GUIDE_VISUEL_RAILWAY.md  ← Suivez celui-ci !
+   - auto-deploy.sh           ← Script en cours
+
+
+🎯 RÉSULTAT FINAL :
+
+   Après ces étapes :
+   - ✅ Backend déployé
+   - ✅ Storefront déployé
+   - ✅ Base de données initialisée
+   - ✅ Admin créé
+   - ✅ Application fonctionnelle
+
+
+═══════════════════════════════════════════════════
+
+   👉 OUVREZ : GUIDE_VISUEL_RAILWAY.md
+   
+   Et suivez les instructions !
+
+═══════════════════════════════════════════════════

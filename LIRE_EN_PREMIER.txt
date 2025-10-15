@@ -1,0 +1,65 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║     🚂 DÉPLOIEMENT RAILWAY - SHOW ROOM PRO                    ║
+║                                                               ║
+║     ✅ TOUT EST PRÊT !                                        ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📍 VOUS ÊTES ICI :
+   /Users/hichamrouabhi/CascadeProjects/show room pro/b2b-starter-medusa
+
+
+🎯 COMMANDE POUR DÉMARRER :
+
+   ./railway-deploy.sh
+
+
+📚 GUIDES DISPONIBLES :
+
+   1️⃣  COMMENCER_ICI.md          ← Commencez par ici !
+   2️⃣  DEPLOYMENT_READY.md       ← Résumé complet
+   3️⃣  DEPLOY_GUIDE.md           ← Guide détaillé étape par étape
+   4️⃣  railway-deploy.sh         ← Script interactif
+
+
+⚡ DÉMARRAGE RAPIDE (3 étapes) :
+
+   ÉTAPE 1 : Créer le projet sur https://railway.app
+             - Nouveau projet : "show-room-pro"
+             - Ajouter PostgreSQL
+             - Créer service backend
+             - Créer service storefront
+
+   ÉTAPE 2 : Lancer le script
+             ./railway-deploy.sh
+
+   ÉTAPE 3 : Configurer les variables
+             (Voir DEPLOY_GUIDE.md pour les détails)
+
+
+🔑 SECRETS À GÉNÉRER :
+
+   openssl rand -base64 32   # JWT_SECRET
+   openssl rand -base64 32   # COOKIE_SECRET  
+   openssl rand -base64 32   # REVALIDATE_SECRET
+
+
+✅ VOTRE SYSTÈME :
+
+   ✓ Railway CLI : v4.10.0
+   ✓ Connecté : hicham@leads-farmer.com
+   ✓ Scripts : Prêts
+   ✓ Config : Complète
+   ✓ Documentation : Disponible
+
+
+🆘 BESOIN D'AIDE ?
+
+   1. Consultez COMMENCER_ICI.md
+   2. Lisez DEPLOY_GUIDE.md
+   3. Lancez ./railway-deploy.sh
+
+
+🚀 PRÊT À DÉPLOYER !
+

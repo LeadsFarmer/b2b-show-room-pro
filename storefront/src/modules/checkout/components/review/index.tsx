@@ -24,21 +24,21 @@ const Review = ({
     <div className="flex flex-col gap-y-2">
       <div className="flex items-start gap-x-1 w-full">
         <Text className="txt-xsmall text-neutral-500 mb-1">
-          By Completing this order, I agree to Medusa&apos;s{" "}
+          En validant cette commande, j&apos;accepte les{" "}
           <LocalizedClientLink
             href="/terms-of-sale"
             className="hover:text-neutral-800"
             target="_blank"
           >
-            Terms of Sale ↗
+            Conditions de vente ↗
           </LocalizedClientLink>{" "}
-          and{" "}
+          et la{" "}
           <LocalizedClientLink
             href="/privacy-policy"
             className="hover:text-neutral-800"
             target="_blank"
           >
-            Privacy Policy ↗
+            Politique de confidentialité ↗
           </LocalizedClientLink>
         </Text>
       </div>

@@ -1,0 +1,68 @@
+╔════════════════════════════════════════════════════════════╗
+║           VARIABLES À COPIER-COLLER SUR RAILWAY            ║
+╚════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════
+🔧 VARIABLES BACKEND
+═══════════════════════════════════════════════════════════
+
+Sur Railway → Service "backend" → Variables → Raw Editor
+
+COPIEZ-COLLEZ EXACTEMENT CECI :
+
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+JWT_SECRET=zB0cBGOv6ZosVsdqiCqMRnlJlJalpSwqdRf3DcKcuZI=
+COOKIE_SECRET=i5+4dsUzQpkE5P7rHMDZvgcuGiR/iigmuKZ0DMkpCHM=
+STORE_CORS=http://localhost:8000
+ADMIN_CORS=http://localhost:9000
+AUTH_CORS=http://localhost:9000
+PORT=9000
+NODE_ENV=production
+
+
+═══════════════════════════════════════════════════════════
+🌐 VARIABLES STOREFRONT
+═══════════════════════════════════════════════════════════
+
+Sur Railway → Service "storefront" → Variables → Raw Editor
+
+COPIEZ-COLLEZ EXACTEMENT CECI :
+
+NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_temp
+NEXT_PUBLIC_BASE_URL=http://localhost:8000
+NEXT_PUBLIC_DEFAULT_REGION=us
+REVALIDATE_SECRET=rMTxQNkTbCexsMqXmpGBW0xga77kmT6FpScZz+Ku6ak=
+NODE_ENV=production
+
+
+═══════════════════════════════════════════════════════════
+✅ CONFIGURATION ROOT DIRECTORY
+═══════════════════════════════════════════════════════════
+
+Service BACKEND → Settings → Root Directory:
+   backend
+
+Service STOREFRONT → Settings → Root Directory:
+   storefront
+
+
+═══════════════════════════════════════════════════════════
+📝 RÉSUMÉ
+═══════════════════════════════════════════════════════════
+
+1. Créez service "backend"
+   → Settings → Root Directory → backend
+   → Variables → (copiez ci-dessus)
+
+2. Créez service "storefront"
+   → Settings → Root Directory → storefront
+   → Variables → (copiez ci-dessus)
+
+3. Attendez que backend soit déployé (vert)
+
+4. Revenez au terminal pour la suite !
+
+
+═══════════════════════════════════════════════════════════
