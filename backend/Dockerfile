@@ -27,6 +27,7 @@ ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/modules ./modules
 COPY --from=builder /app/medusa-config.ts ./
 COPY --from=builder /app/tsconfig.json ./
 COPY --from=builder /app/package.json ./
@@ -36,5 +37,5 @@ COPY --from=builder /app/.yarnrc.yml ./
 # Expose port
 EXPOSE 9000
 
-# Start server
-CMD ["yarn", "medusa", "start"]
+# Start server - Use the compiled server
+CMD ["node", ".medusa/server/index.js"]
