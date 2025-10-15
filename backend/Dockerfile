@@ -8,16 +8,16 @@ RUN corepack enable
 # Install dependencies
 FROM base AS deps
 COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
 RUN corepack enable && yarn install --frozen-lockfile
 
 # Build application
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
+COPY package.json yarn.lock .yarnrc.yml ./
 COPY . .
 
 # Build both backend and admin
-RUN yarn build
+RUN corepack enable && yarn build
 
 # Production image
 FROM base AS runner
@@ -28,6 +28,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/medusa-config.ts ./
 COPY --from=builder /app/package.json ./
+COPY --from=builder /app/yarn.lock ./
+COPY --from=builder /app/.yarnrc.yml ./
 
 # Expose port
 EXPOSE 9000
