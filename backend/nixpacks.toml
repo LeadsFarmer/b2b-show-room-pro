@@ -2,10 +2,10 @@
 nixPkgs = ['nodejs_22', 'yarn', 'bash']
 
 [phases.install]
-cmds = ['yarn install']
+cmds = ['yarn install --frozen-lockfile']
 
 [phases.build]
 cmds = ['yarn build']
 
 [start]
-cmd = 'sh -c "yarn build && yarn medusa start"'
+cmd = 'yarn medusa start'

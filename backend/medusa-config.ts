@@ -29,9 +29,26 @@ module.exports = defineConfig({
     [APPROVAL_MODULE]: {
       resolve: "./modules/approval",
     },
-    [Modules.CACHE]: {
-      resolve: "@medusajs/medusa/cache-inmemory",
-    },
+    [Modules.CACHE]: process.env.CACHE_REDIS_URL
+      ? {
+          resolve: "@medusajs/medusa/cache-redis",
+          options: {
+            redisUrl: process.env.CACHE_REDIS_URL,
+          },
+        }
+      : {
+          resolve: "@medusajs/medusa/cache-inmemory",
+        },
+    [Modules.EVENT_BUS]: process.env.EVENT_BUS_REDIS_URL
+      ? {
+          resolve: "@medusajs/medusa/event-bus-redis",
+          options: {
+            redisUrl: process.env.EVENT_BUS_REDIS_URL,
+          },
+        }
+      : {
+          resolve: "@medusajs/medusa/event-bus-local",
+        },
     [Modules.WORKFLOW_ENGINE]: {
       resolve: "@medusajs/medusa/workflow-engine-inmemory",
     },
