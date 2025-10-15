@@ -36,5 +36,5 @@ COPY --from=builder /app/.yarnrc.yml ./
 # Expose port
 EXPOSE 9000
 
-# Start server - Use the compiled server
-CMD ["node", ".medusa/server/index.js"]
+# Start server
+CMD ["yarn", "medusa", "start"]
