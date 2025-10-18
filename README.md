@@ -1,10 +1,28 @@
-<h1 align="center">
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://github.com/user-attachments/assets/38ba3a7b-e07b-4117-8187-7b171eae3769" alt="B2B Commerce Starter" width="80" height="80"></a>
-  <br>
-  <br>
-  Medusa B2B Commerce Starter
-  <br>
-</h1>
+<p align="center">
+  <a href="https://www.medusajs.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
+      <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg" width=100>
+    </picture>
+  </a>
+  <a href="https://railway.com/deploy/medusajs-20-storefront-b2b?referralCode=-Yg50p">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://railway.app/brand/logo-light.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://railway.app/brand/logo-dark.svg">
+      <img alt="Railway logo" src="https://railway.app/brand/logo-light.svg" width=100>
+    </picture>
+  </a>
+</p>
+
+<h2 align="center">
+  MedusaJS 2.0 B2B Storefront for Railway
+</h2>
+<h4 align="center">
+  Backend + Storefront + postgres + redis + MinIO
+</h4>
+
+<p align="center">Customizable B2B ecommerce built with <a href="https://medusajs.com/" target="_blank">Medusa 2.0</a> & Next.js Storefront, optimized for Railway deployment</p>
 
 <p align="center">Customizable B2B ecommerce built with <a href="https://medusajs.com/" target="_blank">Medusa 2.0</a> & Next.js Storefront</p>
 
@@ -27,7 +45,26 @@
 </video>
 </p>
 
-<br>
+## Easy deploy in minutes
+
+This repo is a fork of the official Medusa B2B starter: https://github.com/medusajs/b2b-starter-medusa but tweaked for seamless deploy on Railway.
+
+**Disclaimer:** This is a beta template that hasn't had much real-world testing yet. Please test thoroughly before production use.
+
+This Railway template is preconfigured with:
+- PostgreSQL database (automatic setup)
+- Redis cache (automatic setup)
+- MinIO file storage (automatic setup)
+- Automatic admin user creation
+- Automatic API key sharing between backend and storefront
+- No manual setup needed, just click and deploy!
+
+**Note:** This template is not preconfigured with email service, payment service, or MeiliSearch integration. You will need to add those integrations manually if required.
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/medusajs-20-storefront-b2b?referralCode=-Yg50p)
+
+If you are looking for the standard medusa webshop starter (D2C) please see: https://github.com/rpuls/medusajs-2.0-for-railway-boilerplate
+
 
 ## Table
 
@@ -200,8 +237,14 @@ To reflect any changes made to data models, make sure to run `npx medusa db:migr
 
 &nbsp;
 
-## Contributors
-
-<a href = "https://github.com/medusajs/b2b-starter-medusa/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo=medusajs/b2b-starter-medusa"/>
-</a>
+<p align="center">
+  <a href="https://funkyton.com/">
+    <div style="text-align: center;">
+      A template by,
+      <br>
+      <picture>
+        <img alt="FUNKYTON logo" src="https://res-5.cloudinary.com/hczpmiapo/image/upload/q_auto/v1/ghost-blog-images/funkyton-logo.png" width=200>
+      </picture>
+    </div>
+  </a>
+</p>
