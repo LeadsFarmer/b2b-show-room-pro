@@ -197,21 +197,24 @@ class MinioFileProviderService extends AbstractFileProviderService {
   }
 
   async delete(
-    fileData: ProviderDeleteFileDTO
+    fileData: ProviderDeleteFileDTO | ProviderDeleteFileDTO[]
   ): Promise<void> {
-    if (!fileData?.fileKey) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
-        'No file key provided'
-      )
-    }
+    const files = Array.isArray(fileData) ? fileData : [fileData];
 
-    try {
-      await this.client.removeObject(this.bucket, fileData.fileKey)
-      this.logger_.info(`Successfully deleted file ${fileData.fileKey} from MinIO bucket ${this.bucket}`)
-    } catch (error) {
-      // Log error but don't throw if file doesn't exist
-      this.logger_.warn(`Failed to delete file ${fileData.fileKey}: ${error.message}`)
+    for (const file of files) {
+      if (!file?.fileKey) {
+        throw new MedusaError(
+          MedusaError.Types.INVALID_DATA,
+          'No file key provided'
+        );
+      }
+
+      try {
+        await this.client.removeObject(this.bucket, file.fileKey);
+        this.logger_.info(`Successfully deleted file ${file.fileKey} from MinIO bucket ${this.bucket}`);
+      } catch (error) {
+        this.logger_.warn(`Failed to delete file ${file.fileKey}: ${error.message}`);
+      }
     }
   }
 
@@ -253,9 +256,8 @@ class MinioFileProviderService extends AbstractFileProviderService {
     }
 
     try {
-      // Generate a unique file key similar to the upload method
-      const parsedFilename = path.parse(fileData.filename)
-      const fileKey = `${parsedFilename.name}-${ulid()}${parsedFilename.ext}`
+      // Use the filename directly as the key (matches S3 provider behavior for presigned uploads)
+      const fileKey = fileData.filename
 
       // Generate presigned PUT URL that expires in 15 minutes
       const url = await this.client.presignedPutObject(
@@ -263,8 +265,6 @@ class MinioFileProviderService extends AbstractFileProviderService {
         fileKey,
         15 * 60 // URL expires in 15 minutes
       )
-
-      this.logger_.info(`Generated presigned upload URL for file ${fileKey}`)
 
       return {
         url,
@@ -317,9 +317,11 @@ class MinioFileProviderService extends AbstractFileProviderService {
     }
 
     try {
-      const stream = await this.client.getObject(this.bucket, fileData.fileKey)
+      // Get the MinIO stream directly
+      const minioStream = await this.client.getObject(this.bucket, fileData.fileKey)
+
       this.logger_.info(`Retrieved download stream for file ${fileData.fileKey}`)
-      return stream
+      return minioStream
     } catch (error) {
       this.logger_.error(`Failed to get download stream: ${error.message}`)
       throw new MedusaError(
