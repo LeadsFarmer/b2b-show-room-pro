@@ -31,20 +31,15 @@ module.exports = defineConfig({
       resolve: "@medusajs/medusa/file",
       options: {
         providers: [
-          ...(process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY ? [{
-            resolve: "@medusajs/medusa/file-s3",
-            id: "s3",
+          ...(process.env.MINIO_ENDPOINT && process.env.MINIO_ACCESS_KEY && process.env.MINIO_SECRET_KEY ? [{
+            resolve: './src/modules/minio-file',
+            id: 'minio',
             options: {
-              file_url: process.env.S3_PUBLIC_URL || `${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET || "medusa-media"}`,
-              access_key_id: process.env.S3_ACCESS_KEY_ID,
-              secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
-              region: process.env.S3_REGION || "us-east-1",
-              bucket: process.env.S3_BUCKET || "medusa-media",
-              endpoint: process.env.S3_ENDPOINT,
-              additional_client_config: process.env.S3_ENDPOINT ? {
-                forcePathStyle: true,
-              } : {},
-            },
+              endPoint: process.env.MINIO_ENDPOINT,
+              accessKey: process.env.MINIO_ACCESS_KEY,
+              secretKey: process.env.MINIO_SECRET_KEY,
+              bucket: process.env.MINIO_BUCKET // Optional, default: medusa-media
+            }
           }] : [{
             resolve: "@medusajs/medusa/file-local",
             id: "local",
