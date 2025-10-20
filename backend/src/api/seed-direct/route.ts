@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import seedDemoData from "../../scripts/seed"
+import seedDemoData from "../../scripts/seed.js"
 
 export const POST = async (
   req: MedusaRequest,
