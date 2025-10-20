@@ -15,6 +15,7 @@
   "scripts": {
     "build": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts",
+    "seed:safe": "medusa exec ./src/scripts/seed-safe.ts",
     "start": "medusa start",
     "start:production": "medusa db:migrate && (medusa exec ./src/scripts/seed.ts || true) && medusa start",
     "dev": "medusa develop",
