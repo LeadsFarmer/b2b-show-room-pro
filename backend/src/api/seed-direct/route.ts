@@ -12,8 +12,9 @@ export const POST = async (
     }
 
     // Execute seed with lazy loading
-    // Import from compiled location in .medusa/server
-    const seedModule = await import("../../../scripts/seed.js") as any
+    // Use absolute path from working directory
+    const seedPath = `file://${process.cwd()}/.medusa/server/scripts/seed.js`
+    const seedModule = await import(seedPath) as any
     await seedModule.default({ container: req.scope, args: [] })
 
     return res.json({
