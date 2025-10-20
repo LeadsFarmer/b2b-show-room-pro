@@ -6,6 +6,8 @@ import { StoreCollection, StoreRegion } from "@medusajs/types"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+// Force dynamic rendering to avoid build-time API calls
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 type Props = {

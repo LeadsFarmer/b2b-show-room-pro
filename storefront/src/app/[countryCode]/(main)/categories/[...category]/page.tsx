@@ -5,6 +5,8 @@ import { SortOptions } from "@/modules/store/components/refinement-list/sort-pro
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+// Force dynamic rendering to avoid build-time API calls
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 type Props = {

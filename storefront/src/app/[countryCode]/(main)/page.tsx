@@ -5,6 +5,8 @@ import SkeletonFeaturedProducts from "@/modules/skeletons/templates/skeleton-fea
 import { Metadata } from "next"
 import { Suspense } from "react"
 
+// Force dynamic rendering to avoid build-time API calls
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 export const metadata: Metadata = {
