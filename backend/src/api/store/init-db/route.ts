@@ -1,18 +1,20 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { exec } from "child_process"
-import { promisify } from "util"
-
-const execAsync = promisify(exec)
 
 export const GET = async (
   req: MedusaRequest,
   res: MedusaResponse
 ) => {
   try {
-    // Check if already initialized
+    // Check secret token
+    const token = req.query.token
+    if (token !== process.env.INIT_SECRET) {
+      return res.status(403).json({ message: "Invalid token" })
+    }
+
     const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
     
+    // Check if already initialized
     const { data: keys } = await query.graph({
       entity: "publishable_api_key",
       fields: ["id"],
@@ -20,30 +22,20 @@ export const GET = async (
 
     if (keys && keys.length > 0) {
       return res.json({
-        message: "Database already initialized",
+        message: "✅ Database already initialized",
         publishable_key: keys[0].id,
+        note: "Use this key for your storefront: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"
       })
     }
 
-    // Run migrations
-    await execAsync("yarn medusa db:migrate")
-    
-    // Seed database
-    await execAsync("yarn seed")
-
-    // Get publishable key
-    const { data: newKeys } = await query.graph({
-      entity: "publishable_api_key",
-      fields: ["id"],
-    })
-
     return res.json({
-      message: "Database initialized successfully!",
-      publishable_key: newKeys[0]?.id || "No key found",
+      message: "❌ Database not initialized yet",
+      instructions: "Run: railway run bash scripts/init-db.sh OR initialize via seed manually",
+      note: "Publishable key will be generated after seeding"
     })
   } catch (error) {
     return res.status(500).json({
-      message: "Initialization failed",
+      message: "Error checking database",
       error: error.message,
     })
   }
