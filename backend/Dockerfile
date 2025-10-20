@@ -32,9 +32,10 @@ COPY --from=builder /app/tsconfig.json ./
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/yarn.lock ./
 COPY --from=builder /app/.yarnrc.yml ./
+COPY --from=builder /app/start.sh ./
 
 # Expose port
 EXPOSE 9000
 
-# Start server
-CMD ["yarn", "medusa", "start"]
+# Start server with debug script
+CMD ["sh", "start.sh"]
