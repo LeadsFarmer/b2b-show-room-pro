@@ -1,5 +1,4 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import seedDemoData from "../../scripts/seed.js"
 
 export const POST = async (
   req: MedusaRequest,
@@ -12,8 +11,9 @@ export const POST = async (
       return res.status(403).json({ message: "❌ Invalid token" })
     }
 
-    // Execute seed directly
-    await seedDemoData({ container: req.scope, args: [] })
+    // Execute seed with lazy loading
+    const seedModule = await import("../../scripts/seed.js") as any
+    await seedModule.default({ container: req.scope, args: [] })
 
     return res.json({
       status: "success",

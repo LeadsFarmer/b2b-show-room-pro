@@ -1,6 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { Client } from "pg"
-import seedDemoData from "../../scripts/seed.js"
 
 export const GET = async (
   req: MedusaRequest,
@@ -100,8 +99,9 @@ export const POST = async (
       })
     }
 
-    // Execute seed directly
-    await seedDemoData({ container: req.scope, args: [] })
+    // Execute seed with lazy loading to avoid blocking server startup
+    const seedModule = await import("../../scripts/seed.js") as any
+    await seedModule.default({ container: req.scope, args: [] })
 
     return res.json({
       status: "success",
