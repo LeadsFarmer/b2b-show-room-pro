@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MedusaModule } from "@medusajs/framework/modules-sdk"
 
 export const GET = async (
   req: MedusaRequest,
@@ -12,38 +12,63 @@ export const GET = async (
       return res.status(403).json({ message: "❌ Invalid token. Check INIT_SECRET on Railway." })
     }
 
-    const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+    // Access database directly
+    const manager = req.scope.resolve("manager") as any
     
-    // Get publishable key
-    const { data: keys } = await query.graph({
-      entity: "publishable_api_key",
-      fields: ["id", "created_at"],
-    })
+    // Check if tables exist
+    const tablesQuery = await manager.query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public' 
+      LIMIT 5
+    `)
 
-    if (keys && keys.length > 0) {
+    if (!tablesQuery || tablesQuery.length === 0) {
       return res.json({
-        status: "success",
-        message: "✅ Database already initialized",
-        publishable_key: keys[0].id,
-        created_at: keys[0].created_at,
-        instructions: {
-          storefront: "Add this to your Storefront environment variables:",
-          variable: "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=" + keys[0].id
-        }
+        status: "not_initialized",
+        message: "❌ Database is empty - no tables found",
+        action_required: "Run migrations first",
+        command: "railway run bash scripts/init-db.sh"
       })
     }
 
+    // Try to get publishable key
+    try {
+      const keyQuery = await manager.query(`
+        SELECT id, created_at 
+        FROM publishable_api_key 
+        LIMIT 1
+      `)
+
+      if (keyQuery && keyQuery.length > 0) {
+        return res.json({
+          status: "success",
+          message: "✅ Database initialized!",
+          publishable_key: keyQuery[0].id,
+          created_at: keyQuery[0].created_at,
+          instructions: {
+            storefront: "Add this to your Storefront environment variables:",
+            variable: "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=" + keyQuery[0].id
+          }
+        })
+      }
+    } catch (e) {
+      // Table doesn't exist yet
+    }
+
     return res.json({
-      status: "not_initialized",
-      message: "❌ No publishable key found",
-      instructions: "Database needs to be seeded. Contact support or run migrations manually.",
-      hint: "The seed script should create a default publishable key"
+      status: "partially_initialized",
+      message: "⚠️ Tables exist but no publishable key found",
+      tables_found: tablesQuery.length,
+      action_required: "Run seed to create publishable key",
+      command: "railway run bash scripts/init-db.sh"
     })
   } catch (error) {
     return res.status(500).json({
       status: "error",
       message: "Error checking database",
       error: error.message,
+      stack: error.stack
     })
   }
 }
