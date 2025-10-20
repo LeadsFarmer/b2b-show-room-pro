@@ -83,14 +83,37 @@ export const GET = async (
   }
 }
 
-// Health check without token
+// Seed database when called with token
 export const POST = async (
   req: MedusaRequest,
   res: MedusaResponse
 ) => {
-  return res.json({
-    status: "ok",
-    message: "Setup endpoint is working",
-    note: "Use GET with ?token=YOUR_TOKEN to retrieve publishable key"
-  })
+  try {
+    const token = req.query.token as string
+    
+    if (token !== process.env.INIT_SECRET) {
+      return res.json({
+        status: "ok",
+        message: "Setup endpoint is working",
+        note: "Use GET with ?token=YOUR_TOKEN to retrieve publishable key"
+      })
+    }
+
+    // Execute seed directly
+    const seedDemoData = (await import("../../scripts/seed")).default
+    await seedDemoData({ container: req.scope })
+
+    return res.json({
+      status: "success",
+      message: "✅ Database seeded successfully!",
+      next_step: "You can now access the storefront with demo data"
+    })
+  } catch (error: any) {
+    return res.status(500).json({
+      status: "error",
+      message: "Seed failed",
+      error: error.message,
+      stack: error.stack?.substring(0, 500)
+    })
+  }
 }
