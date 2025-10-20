@@ -17,8 +17,6 @@ export const POST = async (
     }
 
     // Run seed
-    res.write('{"status":"running","message":"🌱 Starting seed process..."}')
-    
     const { stdout, stderr } = await execAsync("yarn seed", {
       cwd: "/app",
       env: process.env
