@@ -100,7 +100,8 @@ export const POST = async (
     }
 
     // Execute seed with lazy loading to avoid blocking server startup
-    const seedModule = await import("../../scripts/seed.js") as any
+    // Import from compiled location in .medusa/server
+    const seedModule = await import("../../../scripts/seed.js") as any
     await seedModule.default({ container: req.scope, args: [] })
 
     return res.json({
