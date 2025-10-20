@@ -100,8 +100,8 @@ export const POST = async (
     }
 
     // Execute seed directly
-    const seedDemoData = (await import("../../scripts/seed")).default
-    await seedDemoData({ container: req.scope })
+    const seedDemoData = (await import("../../scripts/seed.js")).default
+    await seedDemoData({ container: req.scope, args: [] })
 
     return res.json({
       status: "success",

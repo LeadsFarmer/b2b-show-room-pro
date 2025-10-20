@@ -13,7 +13,7 @@ export const POST = async (
     }
 
     // Execute seed directly
-    await seedDemoData({ container: req.scope })
+    await seedDemoData({ container: req.scope, args: [] })
 
     return res.json({
       status: "success",
