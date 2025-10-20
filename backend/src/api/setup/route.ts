@@ -1,5 +1,9 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { Client } from "pg"
+import { exec } from "child_process"
+import { promisify } from "util"
+
+const execAsync = promisify(exec)
 
 export const GET = async (
   req: MedusaRequest,
@@ -99,15 +103,18 @@ export const POST = async (
       })
     }
 
-    // Execute seed with lazy loading to avoid blocking server startup
-    // Use absolute path from working directory
-    const seedPath = `file://${process.cwd()}/.medusa/server/scripts/seed.js`
-    const seedModule = await import(seedPath) as any
-    await seedModule.default({ container: req.scope, args: [] })
+    // Execute seed using medusa exec command
+    const { stdout, stderr } = await execAsync("medusa exec ./src/scripts/seed.ts", {
+      cwd: process.cwd(),
+      env: process.env,
+      timeout: 120000 // 2 minutes timeout
+    })
 
     return res.json({
       status: "success",
       message: "✅ Database seeded successfully!",
+      output: stdout.substring(0, 500),
+      stderr: stderr ? stderr.substring(0, 300) : undefined,
       next_step: "You can now access the storefront with demo data"
     })
   } catch (error: any) {
@@ -115,7 +122,9 @@ export const POST = async (
       status: "error",
       message: "Seed failed",
       error: error.message,
-      stack: error.stack?.substring(0, 500)
+      stderr: error.stderr?.substring(0, 500),
+      stdout: error.stdout?.substring(0, 500),
+      stack: error.stack?.substring(0, 300)
     })
   }
 }
