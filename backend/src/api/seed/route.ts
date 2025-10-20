@@ -11,7 +11,7 @@ export const POST = async (
 ) => {
   try {
     // Check secret token
-    const token = req.query.token || req.body?.token
+    const token = req.query.token as string
     if (token !== process.env.INIT_SECRET) {
       return res.status(403).json({ message: "❌ Invalid token" })
     }
