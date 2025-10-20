@@ -36,5 +36,5 @@ COPY --from=builder /app/.yarnrc.yml ./
 # Expose port
 EXPOSE 9000
 
-# Start server
-CMD ["yarn", "medusa", "start"]
+# Start server with auto migrations and seed
+CMD ["yarn", "start:production"]
