@@ -1,0 +1,67 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   ✅ COMMITS POUSSÉS SUR GITHUB !                 ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+✅ COMMITS SYNCHRONISÉS :
+
+Commit: b8f09018
+Message: "Revert to simple start - migrations will be manual"
+
+Poussé sur :
+✓ https://github.com/LeadsFarmer/b2b-show-room-pro.git
+✓ https://github.com/LeadsFarmer/show-room-pro.git
+
+
+📊 MODIFICATIONS :
+
+✅ backend/nixpacks.toml
+   → Retour à : cmd = 'yarn start'
+
+✅ backend/package.json
+   → Script start:production conservé (pour plus tard)
+
+
+🔄 RAILWAY REDÉPLOIE MAINTENANT :
+
+1. Railway détecte le nouveau commit
+2. Rebuild du backend
+3. Démarrage simple avec "yarn start"
+4. Le serveur devrait démarrer en 2-3 minutes
+
+
+⏳ TEMPS ESTIMÉ : 2-3 minutes
+
+
+👀 SURVEILLEZ LES LOGS :
+
+Railway → showroompro → Backend → Logs
+
+Attendez de voir :
+✅ "Server listening on port 9000"
+
+ou
+
+❌ "Error: relation does not exist"
+
+
+═══════════════════════════════════════════════════
+
+📝 PROCHAINES ÉTAPES :
+
+Une fois le backend démarré :
+
+1. Vérifier si la DB est initialisée
+2. Si OUI → Récupérer la clé publique
+3. Si NON → Exécuter les migrations
+4. Mettre la clé dans Storefront
+5. Tester l'application !
+
+
+═══════════════════════════════════════════════════
+
+Dites-moi ce que vous voyez dans les logs Railway ! 🚀
+
+═══════════════════════════════════════════════════

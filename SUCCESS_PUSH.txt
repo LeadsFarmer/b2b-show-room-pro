@@ -1,0 +1,73 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   ✅ COMMIT POUSSÉ SUR LE BON REPO !              ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+✅ COMMIT RÉUSSI :
+
+Repo: https://github.com/LeadsFarmer/b2b-show-room-pro.git
+Branch: main
+Commit: d32f1fba - "Auto-initialize database on Railway startup"
+
+
+📊 MODIFICATIONS INCLUSES :
+
+✅ backend/package.json
+   → Nouveau script : "start:production"
+   → Exécute : migrations + seed + start
+
+✅ backend/nixpacks.toml  
+   → Commande de démarrage : yarn start:production
+
+
+🔄 CE QUI SE PASSE MAINTENANT :
+
+1. Railway détecte le nouveau commit
+2. Redéploiement automatique du Backend
+3. Au démarrage, le backend va :
+   ✅ yarn medusa db:migrate (migrations)
+   ✅ yarn medusa exec ./src/scripts/seed.ts (données)
+   ✅ yarn medusa start (serveur)
+
+
+⏳ TEMPS ESTIMÉ : 3-5 minutes
+
+
+👀 SURVEILLEZ SUR RAILWAY :
+
+1. railway.app → showroompro
+2. Service Backend
+3. Onglet "Deployments" ou "Logs"
+
+Vous verrez :
+   🔵 Building... → 🟢 Deployed
+   
+Dans les logs :
+   ✅ "Running migrations..."
+   ✅ "Seeding completed"
+   ✅ "Server listening on port 9000"
+
+
+═══════════════════════════════════════════════════
+
+🔑 APRÈS LE DÉPLOIEMENT (dans 5 min) :
+
+1. Récupérez la clé publique :
+   railway connect postgres
+   SELECT token FROM api_key WHERE type = 'publishable';
+
+2. Mettez-la dans Storefront :
+   Railway → Storefront → Variables
+   NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY = pk_...
+
+3. C'EST TOUT ! ✅
+
+
+═══════════════════════════════════════════════════
+
+🎉 VOTRE APPLICATION SHOW ROOM PRO VA S'INITIALISER
+   AUTOMATIQUEMENT ! PLUS RIEN À FAIRE ! 🚀
+
+═══════════════════════════════════════════════════

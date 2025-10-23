@@ -1,0 +1,91 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   ✅ SOLUTION AUTOMATIQUE DÉPLOYÉE !              ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+🎯 CE QUI VIENT D'ÊTRE FAIT :
+
+✅ Modification du backend/package.json
+   → Nouveau script "start:production"
+   → Exécute automatiquement: migrations + seed + start
+
+✅ Modification du backend/nixpacks.toml
+   → Utilise "yarn start:production" au démarrage
+
+✅ Code commité et poussé sur GitHub
+   → Commit: "Auto-initialize database on Railway startup"
+   → Push sur: LeadsFarmer/show-room-pro
+
+
+🔄 CE QUI SE PASSE MAINTENANT :
+
+1. Railway détecte le nouveau commit
+2. Redéploiement automatique du backend
+3. Au démarrage, le backend va AUTOMATIQUEMENT :
+   ✅ Exécuter les migrations (yarn medusa db:migrate)
+   ✅ Insérer les données (yarn run seed)
+   ✅ Démarrer le serveur (yarn medusa start)
+
+
+⏳ TEMPS ESTIMÉ : 3-5 minutes
+
+
+👀 VÉRIFIER SUR RAILWAY :
+
+1. Allez sur railway.app
+2. Projet: showroompro
+3. Service: Backend
+4. Onglet: Logs (ou Deployments)
+
+Vous devriez voir dans les logs :
+✅ "Running migrations..."
+✅ "Seeding data..."
+✅ "Server started..."
+
+
+🔑 RÉCUPÉRER LA CLÉ PUBLIQUE :
+
+Une fois le backend déployé, il reste UNE chose :
+
+Option A - Via PostgreSQL :
+   1. Service PostgreSQL → Connect → psql
+   2. SELECT token FROM api_key WHERE type = 'publishable';
+   3. Copiez la clé pk_...
+
+Option B - Via Railway CLI :
+   railway connect postgres
+   (puis la même requête SQL)
+
+
+📝 METTRE LA CLÉ DANS STOREFRONT :
+
+1. Service Storefront → Variables
+2. NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY = pk_...
+3. Save
+
+
+═══════════════════════════════════════════════════
+
+🎉 TERMINÉ !
+
+Votre application Show Room Pro va s'initialiser TOUTE SEULE !
+
+Plus besoin de commandes manuelles !
+Plus besoin de terminal !
+Tout est automatique ! ��
+
+═══════════════════════════════════════════════════
+
+
+📊 PROCHAINES ÉTAPES :
+
+1. ⏳ Attendez 3-5 min (redéploiement)
+2. 📊 Vérifiez les logs sur Railway
+3. 🔑 Récupérez la clé publique
+4. 📝 Mettez-la dans le Storefront
+5. ✅ Testez votre application !
+
+
+═══════════════════════════════════════════════════

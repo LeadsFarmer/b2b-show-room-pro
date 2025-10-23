@@ -1,0 +1,138 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🎯 ACTION MAINTENANT - 4 ÉTAPES SIMPLES         ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+📍 VOUS ÊTES ICI :
+
+   ✅ Code sur GitHub
+   ✅ Projet Railway créé
+   ✅ Services connectés au repo
+   🔄 Backend et Storefront en cours de déploiement
+
+
+═══════════════════════════════════════════════════
+
+🚀 ÉTAPE 1 : Initialiser la base de données
+═══════════════════════════════════════════════════
+
+1. Allez sur : railway.app
+2. Projet : showroompro
+3. Cliquez sur : Backend
+4. Cherchez : Terminal / Shell / "..." menu
+5. Tapez ces 3 commandes :
+
+   yarn medusa db:migrate
+   (Attendez ✅)
+   
+   yarn run seed
+   (Attendez ✅)
+   
+   yarn medusa user -e admin@showroompro.com -p Pass123! -i admin
+   (✅ Admin créé)
+
+
+═══════════════════════════════════════════════════
+
+🔑 ÉTAPE 2 : Récupérer la clé publique
+═══════════════════════════════════════════════════
+
+Option A - Dans le terminal Backend :
+   yarn medusa exec "SELECT token FROM api_key WHERE type = 'publishable';"
+
+Option B - PostgreSQL :
+   1. Cliquez sur : PostgreSQL
+   2. Connect → psql
+   3. Tapez : SELECT token FROM api_key WHERE type = 'publishable';
+
+💾 COPIEZ la clé : pk_01XXXXXXXXXX...
+
+
+═══════════════════════════════════════════════════
+
+📝 ÉTAPE 3 : Configurer le Storefront
+═══════════════════════════════════════════════════
+
+1. Service : Storefront
+2. Variables
+3. Trouvez : NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+4. Remplacez par : pk_01XXXXXXXXXX (la clé copiée)
+5. Save
+
+
+═══════════════════════════════════════════════════
+
+🌐 ÉTAPE 4 : Mettre à jour les URLs (Important !)
+═══════════════════════════════════════════════════
+
+Une fois tout déployé (services 🟢) :
+
+1. Notez vos URLs Railway :
+   Backend : https://backend-production-XXXX.railway.app
+   Storefront : https://storefront-production-XXXX.railway.app
+
+2. Backend → Variables → Modifiez :
+   STORE_CORS = (URL storefront)
+   ADMIN_CORS = (URL backend)
+   AUTH_CORS = (URL backend)
+
+3. Storefront → Variables → Modifiez :
+   NEXT_PUBLIC_MEDUSA_BACKEND_URL = (URL backend)
+   NEXT_PUBLIC_BASE_URL = (URL storefront)
+
+4. Save (les services vont redéployer)
+
+
+═══════════════════════════════════════════════════
+
+✅ VÉRIFICATION FINALE
+═══════════════════════════════════════════════════
+
+Testez vos URLs :
+
+🔹 Backend API :
+   https://backend-xxx.railway.app/health
+   → Devrait retourner : {"status":"ok"}
+
+🔹 Admin :
+   https://backend-xxx.railway.app/app
+   → Login : admin@showroompro.com
+
+🔹 Storefront :
+   https://storefront-xxx.railway.app
+   → Site Show Room Pro avec branding !
+
+
+═══════════════════════════════════════════════════
+
+🎉 TERMINÉ !
+═══════════════════════════════════════════════════
+
+Votre application Show Room Pro sera complètement
+opérationnelle avec :
+
+✅ Branding Show Room Pro
+✅ Textes en français
+✅ Multi-régions
+✅ Admin fonctionnel
+✅ Base de données PostgreSQL
+✅ Déployé sur Railway
+
+
+═══════════════════════════════════════════════════
+
+📚 GUIDES DISPONIBLES :
+
+- ACTION_MAINTENANT.txt      ← Vous êtes ici
+- ETAPES_FINALES.md          ← Guide détaillé complet
+- SOLUTION_FINALE.md         ← Solutions aux problèmes
+- check-status.sh            ← Vérifier le statut
+
+
+═══════════════════════════════════════════════════
+
+👉 COMMENCEZ PAR L'ÉTAPE 1 SUR RAILWAY.APP ! 🚀
+
+═══════════════════════════════════════════════════

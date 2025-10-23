@@ -1,0 +1,92 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🔧 DÉSACTIVER LE HEALTHCHECK RAILWAY            ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+❌ PROBLÈME :
+
+Le healthcheck échoue et bloque le déploiement :
+→ "Healthcheck Path: /health"
+→ Timeout trop court
+→ Le serveur n'a pas le temps de démarrer
+
+
+✅ SOLUTION (2 minutes) :
+
+
+ÉTAPE 1 : Aller sur Railway
+═══════════════════════════════════════════════════
+
+Railway.app → showroompro → Backend
+
+
+ÉTAPE 2 : Ouvrir Settings
+═══════════════════════════════════════════════════
+
+Cliquez sur l'onglet "Settings" en haut
+
+
+ÉTAPE 3 : Trouver Healthcheck
+═══════════════════════════════════════════════════
+
+Scrollez jusqu'à la section :
+   "Healthcheck" ou
+   "Health Check Path" ou
+   "Deploy Health Check"
+
+
+ÉTAPE 4 : Désactiver
+═══════════════════════════════════════════════════
+
+MÉTHODE A - Toggle OFF :
+   Healthcheck: [ON] → [OFF]
+
+MÉTHODE B - Supprimer le path :
+   Healthcheck Path: /health → (VIDE)
+
+MÉTHODE C - Augmenter timeout :
+   Timeout: 600 seconds
+   Initial Delay: 120 seconds
+
+
+ÉTAPE 5 : Sauvegarder
+═══════════════════════════════════════════════════
+
+Cliquez sur "Save" ou "Update"
+
+
+🔄 RÉSULTAT :
+═══════════════════════════════════════════════════
+
+Railway va redéployer automatiquement :
+✅ Sans healthcheck
+✅ Le serveur aura le temps de démarrer
+✅ Deploy va réussir !
+
+
+⏳ Temps : 2-3 minutes
+
+
+👀 SURVEILLER :
+═══════════════════════════════════════════════════
+
+Logs → Backend
+
+Devrait voir :
+✅ "Building..."
+✅ "Starting..."
+✅ "Server listening on port 9000"
+✅ Pas de "Healthcheck failed"
+
+
+═══════════════════════════════════════════════════
+
+📝 Guide complet : DESACTIVER_HEALTHCHECK.md
+
+═══════════════════════════════════════════════════
+
+🚀 ALLEZ SUR RAILWAY → BACKEND → SETTINGS MAINTENANT !
+
+═══════════════════════════════════════════════════

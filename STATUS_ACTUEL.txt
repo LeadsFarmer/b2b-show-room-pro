@@ -1,0 +1,68 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🔄 DÉPLOIEMENT EN COURS - SHOW ROOM PRO         ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+✅ CE QUI EST FAIT :
+
+   ✓ Repo GitHub : LeadsFarmer/b2b-show-room-pro
+   ✓ Projet Railway : showroompro
+   ✓ Backend connecté au repo (Root: backend)
+   ✓ Storefront connecté au repo (Root: storefront)
+   ✓ Code Show Room Pro personnalisé uploadé
+
+
+🔄 EN COURS (3-5 minutes) :
+
+   Backend:
+   📥 Clone du code GitHub
+   📦 yarn install (dépendances)
+   🔨 yarn build (compilation)
+   🚀 yarn start (démarrage)
+   
+   Storefront:
+   📥 Clone du code GitHub
+   📦 yarn install (dépendances)
+   🔨 yarn build (Next.js)
+   🚀 yarn start (démarrage)
+
+
+👀 SURVEILLER SUR RAILWAY :
+
+   1. Services doivent passer de 🔵 à 🟢
+   2. Logs montrent "Server started"
+   3. URLs générées sont accessibles
+
+
+📊 VÉRIFIER MAINTENANT :
+
+   → Allez sur Railway (déjà ouvert)
+   → Projet : showroompro
+   → Regardez les services Backend et Storefront
+   → Status : Building... → Deployed ✅
+
+
+⏭️ APRÈS DÉPLOIEMENT :
+
+   1. Notez les URLs générées
+   2. Initialisez la base de données
+   3. Créez l'admin
+   4. Récupérez la clé publique
+   5. Mettez à jour les variables (CORS, URLs)
+   6. Testez l'application !
+
+
+📚 GUIDE COMPLET :
+
+   Consultez : VERIFICATION_DEPLOIEMENT.md
+
+
+═══════════════════════════════════════════════════
+
+   ⏳ Attendez que les services soient 🟢 !
+   
+   ✅ Votre branding Show Room Pro sera appliqué !
+
+═══════════════════════════════════════════════════
