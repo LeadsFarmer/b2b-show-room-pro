@@ -7,7 +7,8 @@ loadEnv(process.env.NODE_ENV!, process.cwd());
 
 module.exports = defineConfig({
   admin: {
-    disable: true, // Force disable admin on Railway
+    disable: false,
+    backendUrl: process.env.MEDUSA_BACKEND_URL || "https://backend-production-3375.up.railway.app",
   },
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
