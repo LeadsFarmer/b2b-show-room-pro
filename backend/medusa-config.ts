@@ -29,21 +29,21 @@ module.exports = defineConfig({
     [APPROVAL_MODULE]: {
       resolve: "./modules/approval",
     },
-    [Modules.CACHE]: process.env.CACHE_REDIS_URL
+    [Modules.CACHE]: process.env.REDIS_URL || process.env.CACHE_REDIS_URL
       ? {
           resolve: "@medusajs/medusa/cache-redis",
           options: {
-            redisUrl: process.env.CACHE_REDIS_URL,
+            redisUrl: process.env.REDIS_URL || process.env.CACHE_REDIS_URL,
           },
         }
       : {
           resolve: "@medusajs/medusa/cache-inmemory",
         },
-    [Modules.EVENT_BUS]: process.env.EVENT_BUS_REDIS_URL
+    [Modules.EVENT_BUS]: process.env.REDIS_URL || process.env.EVENT_BUS_REDIS_URL
       ? {
           resolve: "@medusajs/medusa/event-bus-redis",
           options: {
-            redisUrl: process.env.EVENT_BUS_REDIS_URL,
+            redisUrl: process.env.REDIS_URL || process.env.EVENT_BUS_REDIS_URL,
           },
         }
       : {
