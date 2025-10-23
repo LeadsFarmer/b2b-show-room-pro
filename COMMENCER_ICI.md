@@ -1,99 +1,92 @@
-# 🎯 COMMENCEZ ICI - Déploiement Railway
+# 🚀 DÉMARRER MAINTENANT - 3 Commandes
 
-## ⚡ Démarrage ultra-rapide
+## ⚡ Reconnexion Express au Nouveau Railway
 
-### 1️⃣ Depuis ce répertoire, lancez :
+Vous avez supprimé l'ancien projet problématique. Voici comment connecter le nouveau **srpB2B** :
+
+### 1️⃣ Connecter au Projet Railway (1 min)
 
 ```bash
-cd /Users/hichamrouabhi/CascadeProjects/show\ room\ pro/b2b-starter-medusa
-./railway-deploy.sh
+./connect-railway.sh
+```
+
+**→ Sélectionnez "srpB2B" quand demandé**
+
+### 2️⃣ Préparer le Code Propre (30 sec)
+
+```bash
+git checkout main
+git merge railway-sync --strategy-option theirs -m "Apply Railway template"
+```
+
+### 3️⃣ Déployer sur Railway (déclenchement auto)
+
+```bash
+git push b2b main --force
+```
+
+### 4️⃣ Surveiller le Déploiement (7-10 min)
+
+```bash
+railway logs -f
 ```
 
 ---
 
-## 📋 Ordre de déploiement
+## ✅ Ce qui va se passer
 
-### Phase 1 : Créer les services sur Railway.app
+1. **Backend build** (3-5 min)
+   - Migrations DB automatiques
+   - Admin user créé
+   - Seed des données démo
+   - MinIO configuré
 
-1. **Allez sur** : https://railway.app/new
-2. **Créez** un projet vide : `show-room-pro`
-3. **Ajoutez PostgreSQL** : Click "+ New" → Database → PostgreSQL
-4. **Créez le service backend** :
-   - Click "+ New" → Empty Service
-   - Nom : `backend`
-   - Settings → Root Directory : `backend`
-   - Variables : Voir ci-dessous ⬇️
-5. **Créez le service storefront** :
-   - Click "+ New" → Empty Service
-   - Nom : `storefront`
-   - Settings → Root Directory : `storefront`
-   - Variables : Voir ci-dessous ⬇️
+2. **Storefront build** (2-3 min)
+   - Récupération auto de la clé API
+   - Build Next.js optimisé
+
+3. **URLs disponibles**
+   - Admin : `https://<backend>/app`
+   - Storefront : `https://<storefront>`
 
 ---
 
-### Variables Backend (Railway → backend → Variables)
+## 🎯 URLs du Nouveau Projet
 
-```bash
-DATABASE_URL=${{Postgres.DATABASE_URL}}
-JWT_SECRET=<générer avec: openssl rand -base64 32>
-COOKIE_SECRET=<générer avec: openssl rand -base64 32>
-STORE_CORS=http://localhost:8000
-ADMIN_CORS=http://localhost:9000
-AUTH_CORS=http://localhost:9000
-PORT=9000
-NODE_ENV=production
+Après le déploiement, trouvez vos URLs sur :
 ```
-
-### Variables Storefront (Railway → storefront → Variables)
-
-```bash
-NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://votre-backend.railway.app
-NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_<à récupérer après init DB>
-NEXT_PUBLIC_BASE_URL=https://votre-storefront.railway.app
-NEXT_PUBLIC_DEFAULT_REGION=us
-REVALIDATE_SECRET=<générer avec: openssl rand -base64 32>
-NODE_ENV=production
+https://railway.app/project/srpB2B
 ```
 
 ---
 
-### Phase 2 : Utiliser le script
+## 🆘 Si Problème
 
+### Railway link ne marche pas
 ```bash
-./railway-deploy.sh
+railway logout
+railway login
+railway link
 ```
 
-**Menu :**
-1. Lier le projet (première fois)
-2. Initialiser la DB (après déploiement backend)
-3. Récupérer la clé publique
-4-5. Voir les logs
-6. Ouvrir Railway
+### Voir les erreurs de build
+```bash
+railway logs
+```
+
+### Forcer un rebuild
+```bash
+railway up --detach
+```
 
 ---
 
-### Phase 3 : Finaliser
+## 📖 Documentation Complète
 
-1. **Copiez la clé publique** (option 3 du script)
-2. **Ajoutez-la** dans les variables du storefront
-3. **Mettez à jour CORS** dans le backend avec les vraies URLs Railway
-4. **Testez !**
-
----
-
-## 🎉 URLs finales
-
-- **Admin** : `https://votre-backend.railway.app/app`
-- **Storefront** : `https://votre-storefront.railway.app`
+- **Reconnexion détaillée** : `RECONNEXION_RAILWAY.md`
+- **Guide complet** : `RAILWAY_SYNC_GUIDE.md`
+- **Démarrage rapide** : `START_HERE_RAILWAY.md`
 
 ---
 
-## 📚 Aide
-
-- **Guide détaillé** : `DEPLOY_GUIDE.md`
-- **Script** : `./railway-deploy.sh`
-- **Erreur ?** : Vérifiez les logs avec l'option 4 ou 5 du script
-
----
-
-**C'est parti ! 🚀**
+**C'EST TOUT !** Le template Railway s'occupe du reste automatiquement 🎉

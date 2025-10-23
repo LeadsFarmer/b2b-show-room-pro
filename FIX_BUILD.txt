@@ -1,0 +1,74 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   ✅ CORRECTION BUILD APPLIQUÉE !                 ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+❌ PROBLÈME RÉSOLU :
+
+Error: Could not find index.html in the admin build directory
+→ Le build ne s'exécutait pas correctement
+→ Les fichiers admin n'étaient pas générés
+
+
+✅ SOLUTION APPLIQUÉE :
+
+Créé: backend/start.sh
+   → Force le build avant le start
+   → Commandes: yarn build && yarn medusa start
+
+Modifié: backend/nixpacks.toml
+   → Utilise maintenant: bash start.sh
+
+
+📊 COMMIT POUSSÉ :
+
+Commit: e8cbf72b
+Message: "Force build before start to fix admin files"
+Repo: LeadsFarmer/b2b-show-room-pro
+
+
+🔄 RAILWAY REDÉPLOIE MAINTENANT :
+
+1. Install des dépendances
+2. Build phase (yarn build - phase nixpacks)
+3. Start avec start.sh qui :
+   ✅ Re-build pour être sûr (yarn build)
+   ✅ Start le serveur (yarn medusa start)
+
+
+⏳ TEMPS ESTIMÉ : 3-4 minutes
+
+
+👀 SURVEILLEZ LES LOGS :
+
+Railway → Backend → Logs
+
+Vous devriez voir :
+✅ "Building Medusa admin..."
+✅ "Starting Medusa server..."
+✅ "Server listening on port 9000"
+
+
+❌ Plus de :
+   "Could not find index.html..."
+
+
+═══════════════════════════════════════════════════
+
+📝 APRÈS LE DÉPLOIEMENT RÉUSSI :
+
+Une fois que le serveur démarre (logs montrent "Server listening"):
+
+1. Vérifier si la DB est initialisée
+2. Récupérer la clé publique
+3. Configurer le Storefront
+4. Tester l'application !
+
+
+═══════════════════════════════════════════════════
+
+⏳ Attendez 3-4 minutes et surveillez les logs ! 🚀
+
+═══════════════════════════════════════════════════

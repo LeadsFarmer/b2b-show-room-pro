@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e
+
+echo "🗄️  Initialisation de la base de données Railway - SIMPLE"
+echo "=========================================================="
+echo ""
+
+echo "📝 Étape 1: Connexion à PostgreSQL pour créer un admin"
+echo ""
+echo "Je vais ouvrir le shell PostgreSQL Railway."
+echo "Une fois connecté, exécutez CES COMMANDES SQL :"
+echo ""
+echo "────────────────────────────────────────────────────────"
+echo ""
+echo "-- 1. Vérifier que les tables existent (doit retourner des lignes)"
+echo "SELECT tablename FROM pg_tables WHERE schemaname = 'public' LIMIT 5;"
+echo ""
+echo "-- Si pas de tables, la DB n'est pas migrée. Dans ce cas:"
+echo "-- Fermez ce shell et dites-moi, on fera les migrations d'abord"
+echo ""
+echo "-- 2. Si les tables existent, récupérer la clé publique:"
+echo "SELECT token FROM api_key WHERE type = 'publishable';"
+echo ""
+echo "-- 3. Copiez la clé pk_..."
+echo ""
+echo "────────────────────────────────────────────────────────"
+echo ""
+read -p "Appuyez sur ENTRÉE pour ouvrir le shell PostgreSQL..."
+
+railway connect postgres
+
+echo ""
+echo "╔═══════════════════════════════════════════════╗"
+echo "║    📝 APRÈS RÉCUPÉRATION DE LA CLÉ           ║"
+echo "╚═══════════════════════════════════════════════╝"
+echo ""
+echo "Allez sur Railway → Storefront → Variables"
+echo "Mettez: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY = pk_..."
+echo ""
+echo "Si les tables n'existaient PAS, dites-le moi!"
+echo ""

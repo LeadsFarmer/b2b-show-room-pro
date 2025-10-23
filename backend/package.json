@@ -13,11 +13,10 @@
     "medusa"
   ],
   "scripts": {
-    "build": "medusa build",
+    "build": "medusa build && node src/scripts/postBuild.js",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "seed:safe": "medusa exec ./src/scripts/seed-safe.ts",
-    "start": "medusa start",
-    "start:production": "medusa db:migrate && (medusa exec ./src/scripts/seed.ts || true) && medusa start",
+    "ib": "init-backend",
+    "start": "init-backend && cd .medusa/server && medusa start --verbose",
     "dev": "medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
     "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
@@ -29,14 +28,17 @@
     "@medusajs/framework": "2.8.4",
     "@medusajs/js-sdk": "2.8.4",
     "@medusajs/medusa": "2.8.4",
+    "@medusajs/types": "2.8.4",
     "@medusajs/ui": "4.0.14",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "awilix": "^8.0.1",
+    "medusajs-launch-utils": "0.0.18",
+    "minio": "^8.0.6",
     "pg": "^8.13.0",
-    "zod": "3.22.4"
+    "zod": "4.1.12"
   },
   "devDependencies": {
     "@medusajs/test-utils": "2.8.4",
@@ -60,5 +62,8 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "pnpm@10.13.1",
+  "resolutions": {
+    "zod": "^3.25.0"
+  }
 }

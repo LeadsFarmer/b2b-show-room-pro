@@ -1,0 +1,63 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🔗 CONNECTER GITHUB AU PROJET RAILWAY           ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+📍 VOTRE PROJET RAILWAY : showroompro
+
+📍 VOTRE REPO GITHUB : 
+   https://github.com/LeadsFarmer/b2b-show-room-pro
+
+
+═══════════════════════════════════════════════════
+
+🎯 ÉTAPES SUR RAILWAY (5 minutes)
+
+1️⃣  Allez sur votre projet Railway :
+    https://railway.app/project/showroompro
+
+2️⃣  Cliquez sur le service BACKEND
+
+3️⃣  Dans le menu latéral, cliquez "Settings"
+
+4️⃣  Section "Source" → "Connect Repo"
+
+5️⃣  Sélectionnez : LeadsFarmer/b2b-show-room-pro
+
+6️⃣  Root Directory : backend
+
+7️⃣  Branch : main
+
+8️⃣  Railway va redéployer automatiquement !
+
+═══════════════════════════════════════════════════
+
+9️⃣  Répétez pour le STOREFRONT :
+    - Service : Storefront
+    - Repo : LeadsFarmer/b2b-show-room-pro
+    - Root Directory : storefront
+    - Branch : main
+
+═══════════════════════════════════════════════════
+
+✅ C'EST TOUT !
+
+Railway va maintenant :
+- 📥 Cloner votre code Show Room Pro
+- 🔨 Builder l'application
+- 🚀 Déployer avec votre branding
+
+⏳ Temps : 3-5 minutes
+
+═══════════════════════════════════════════════════
+
+📊 VÉRIFICATION
+
+Après le déploiement :
+- ✅ Admin : https://[backend-url].railway.app/app
+- ✅ Storefront : https://[storefront-url].railway.app
+- ✅ Branding Show Room Pro appliqué
+
+═══════════════════════════════════════════════════

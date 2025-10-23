@@ -1,0 +1,79 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   📋 COMMANDES À EXÉCUTER DANS LE TERMINAL        ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+🎯 ÉTAPE 1 : Lier le projet Railway
+═══════════════════════════════════════════════════
+
+Copiez et exécutez :
+
+railway link
+
+
+Quand il demande, sélectionnez :
+→ Workspace: LF's Projects
+→ Project: showroompro
+→ Environment: production
+
+
+🎯 ÉTAPE 2 : Initialiser la base de données
+═══════════════════════════════════════════════════
+
+Copiez et exécutez UNE PAR UNE :
+
+railway service backend
+
+railway run yarn medusa db:migrate
+
+railway run yarn run seed
+
+railway run yarn medusa user -e admin@showroompro.com -p VotreMotDePasse123! -i admin
+
+
+🎯 ÉTAPE 3 : Récupérer la clé publique
+═══════════════════════════════════════════════════
+
+Copiez et exécutez :
+
+railway connect postgres
+
+
+Dans le shell PostgreSQL qui s'ouvre, tapez :
+
+SELECT token FROM api_key WHERE type = 'publishable';
+
+
+💾 COPIEZ la clé qui commence par pk_...
+
+Tapez \q pour quitter
+
+
+🎯 ÉTAPE 4 : Mettre la clé dans Railway
+═══════════════════════════════════════════════════
+
+1. Allez sur Railway.app
+2. Projet: showroompro
+3. Service: Storefront
+4. Variables
+5. Modifiez: NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+6. Collez la clé pk_... que vous avez copiée
+7. Save
+
+
+✅ C'EST TOUT !
+═══════════════════════════════════════════════════
+
+Tous les services vont redéployer et passer au vert ! 🟢
+
+
+📝 SI PROBLÈME
+═══════════════════════════════════════════════════
+
+Si une commande échoue, regardez le message d'erreur
+et dites-le moi, je vous aiderai !
+
+
+═══════════════════════════════════════════════════

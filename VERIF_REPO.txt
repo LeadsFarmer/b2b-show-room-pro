@@ -1,0 +1,63 @@
+╔════════════════════════════════════════════════════╗
+║                                                    ║
+║   🔍 VÉRIFICATION REPO GITHUB                     ║
+║                                                    ║
+╚════════════════════════════════════════════════════╝
+
+
+✅ COMMIT BIEN FAIT ET POUSSÉ :
+
+Commit: d32f1fba
+Message: "✨ Auto-initialize database on Railway startup"
+Repo: https://github.com/LeadsFarmer/show-room-pro.git
+Branch: main
+
+
+⚠️ POSSIBLE PROBLÈME :
+
+Railway pourrait être connecté à un AUTRE repo !
+
+Vous aviez mentionné :
+   https://github.com/LeadsFarmer/b2b-show-room-pro.git
+
+Mais le commit est sur :
+   https://github.com/LeadsFarmer/show-room-pro.git
+
+
+🔍 VÉRIFIER SUR RAILWAY :
+
+1. railway.app → Projet showroompro
+2. Service Backend → Settings
+3. Section "Source" ou "GitHub Repository"
+4. Vérifiez le repo connecté
+
+Si c'est : LeadsFarmer/b2b-show-room-pro
+→ MAUVAIS REPO ! Il faut changer
+
+Si c'est : LeadsFarmer/show-room-pro
+→ BON REPO ! Railway va redéployer
+
+
+═══════════════════════════════════════════════════
+
+✅ SOLUTION 1 : Pousser sur le bon repo
+
+Si Railway est sur b2b-show-room-pro, poussons là-bas :
+
+git remote add b2b https://github.com/LeadsFarmer/b2b-show-room-pro.git
+git push b2b main
+
+
+✅ SOLUTION 2 : Changer le repo sur Railway
+
+1. Railway → Backend → Settings → Source
+2. Reconnectez au repo : LeadsFarmer/show-room-pro
+3. Branch : main
+
+
+═══════════════════════════════════════════════════
+
+📝 Dites-moi quel repo est connecté sur Railway
+   et je vous dirai quoi faire !
+
+═══════════════════════════════════════════════════
