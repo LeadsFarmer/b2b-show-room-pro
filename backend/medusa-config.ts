@@ -7,8 +7,7 @@ loadEnv(process.env.NODE_ENV!, process.cwd());
 
 module.exports = defineConfig({
   admin: {
-    disable: false,
-    backendUrl: process.env.MEDUSA_BACKEND_URL || "https://backend-production-3375.up.railway.app",
+    disable: true, // Disabled for Railway deployment (high memory usage during build)
   },
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
