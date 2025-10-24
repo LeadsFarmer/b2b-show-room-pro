@@ -131,7 +131,7 @@ const CartDrawer = ({
                     amount: subtotal,
                     currency_code: cart.currency_code,
                   })
-                : "Cart"}
+                : "Panier"}
             </span>
             <div className="bg-blue-500 text-white text-xs px-1.5 py-px rounded-full">
               {totalItems}
@@ -145,8 +145,8 @@ const CartDrawer = ({
           <Drawer.Header className="flex self-center">
             <Drawer.Title>
               {totalItems > 0
-                ? `You have ${totalItems} items in your cart`
-                : "Your cart is empty"}
+                ? `Vous avez ${totalItems} article${totalItems > 1 ? 's' : ''} dans votre panier`
+                : "Votre panier est vide"}
             </Drawer.Title>
           </Drawer.Header>
           {cart?.approvals && cart.approvals.length > 0 && (
@@ -176,7 +176,7 @@ const CartDrawer = ({
                     />
                   )}
                   <div className="flex justify-between">
-                    <Text>Subtotal</Text>
+                    <Text>Sous-total</Text>
                     <Text>
                       {convertToLocale({
                         amount: subtotal,
@@ -191,7 +191,7 @@ const CartDrawer = ({
                         className="w-full"
                         size="large"
                       >
-                        View Cart
+                        Voir le panier
                       </Button>
                     </LocalizedClientLink>
                     <LocalizedClientLink href={checkoutPath}>
@@ -203,17 +203,17 @@ const CartDrawer = ({
                         <LockClosedSolidMini />
                         {customer
                           ? spendLimitExceeded
-                            ? "Spending Limit Exceeded"
-                            : "Secure Checkout"
-                          : "Log in to checkout"}
+                            ? "Limite de dépenses dépassée"
+                            : "Passer commande"
+                          : "Connectez-vous pour commander"}
                       </Button>
                     </LocalizedClientLink>
                     {spendLimitExceeded && (
                       <div className="flex items-center gap-x-2 bg-neutral-100 p-3 rounded-md shadow-borders-base">
                         <ExclamationCircle className="text-orange-500 w-fit overflow-visible" />
                         <p className="text-neutral-950 text-xs">
-                          This order exceeds your spending limit. Please contact
-                          your manager for approval.
+                          Cette commande dépasse votre limite de dépenses. Veuillez contacter
+                          votre responsable pour approbation.
                         </p>
                       </div>
                     )}
