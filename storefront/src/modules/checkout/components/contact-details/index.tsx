@@ -86,7 +86,7 @@ const ContactDetails = ({
               }
             )}
           >
-            Contact Details
+            Coordonnées
             {!isOpen && isCompleted && <CheckCircleSolid />}
           </Heading>
 
@@ -99,7 +99,7 @@ const ContactDetails = ({
                   className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
                   data-testid="edit-contact-details-button"
                 >
-                  Edit
+                  Modifier
                 </button>
               </Text>
             )}
@@ -117,8 +117,8 @@ const ContactDetails = ({
                   {requiresApproval &&
                   cartApprovalStatus !== ApprovalStatusType.APPROVED &&
                   !customerIsAdmin
-                    ? "Review order"
-                    : "Next step"}
+                    ? "Vérifier la commande"
+                    : "Étape suivante"}
                 </SubmitButton>
                 <ErrorMessage
                   error={message}
