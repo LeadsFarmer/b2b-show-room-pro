@@ -7,7 +7,7 @@ loadEnv(process.env.NODE_ENV!, process.cwd());
 
 module.exports = defineConfig({
   admin: {
-    disable: true, // Disabled for Railway deployment (high memory usage during build)
+    disable: false,
   },
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
