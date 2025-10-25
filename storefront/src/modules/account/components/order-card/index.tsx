@@ -91,7 +91,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
             </span>
             {"·"}
             <span className="px-2">{`${numberOfLines} ${
-              numberOfLines > 1 ? "items" : "item"
+              numberOfLines > 1 ? "articles" : "article"
             }`}</span>
           </div>
 
@@ -109,7 +109,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 variant="secondary"
                 className="rounded-full text-xs"
               >
-                Details
+                Détails
               </Button>
             </LocalizedClientLink>
           </div>
