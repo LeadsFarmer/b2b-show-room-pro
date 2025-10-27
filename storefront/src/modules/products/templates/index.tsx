@@ -9,6 +9,7 @@ import { notFound } from "next/navigation"
 import React, { Suspense } from "react"
 import ProductActionsWrapper from "./product-actions-wrapper"
 import ProductFacts from "../components/product-facts"
+import ProductMetadata from "../components/product-metadata"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -40,6 +41,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
           <ProductFacts product={product} />
+          <ProductMetadata product={product} />
         </div>
       </div>
       <div className="content-container">
