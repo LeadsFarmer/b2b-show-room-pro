@@ -50,6 +50,9 @@ importers:
       medusajs-launch-utils:
         specifier: 0.0.18
         version: 0.0.18
+      meilisearch:
+        specifier: ^0.44.1
+        version: 0.44.1
       minio:
         specifier: ^8.0.6
         version: 8.0.6
@@ -5245,6 +5248,9 @@ packages:
   medusajs-launch-utils@0.0.18:
     resolution: {integrity: sha512-ReJT1qpYMnoIvkFls5Mzn1bzacLtxZQpsit+bTwt5LzrnqDODzWDzRiUYaV66n359La1VfK3prMghoM3k/kFxA==}
     hasBin: true
+
+  meilisearch@0.44.1:
+    resolution: {integrity: sha512-ZTZYBmomtRwjaWbvU8U8ct04g/YnrNOlvchogJOPgHcQIQBfjdbAvMJ8mLhuZEzpioYXIT6Cv+FcE150pc2+nw==}
 
   merge-descriptors@1.0.3:
     resolution: {integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==}
@@ -13528,6 +13534,8 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - pg-native
+
+  meilisearch@0.44.1: {}
 
   merge-descriptors@1.0.3: {}
 
