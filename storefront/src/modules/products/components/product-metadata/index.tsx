@@ -12,11 +12,10 @@ const ProductMetadata = ({ product }: ProductMetadataProps) => {
     return null
   }
 
-  // Extraction des métadonnées
-  const supplierName = metadata.supplier_name
-  const supplierCountry = metadata.supplier_country
-  const supplierCity = metadata.supplier_city
-  const supplierWebsite = metadata.supplier_website
+  // Extraction des métadonnées PUBLIQUES uniquement
+  // ❌ NE PAS afficher : supplier_*, notion_*, source, price_*_usd (infos internes)
+  
+  // ✅ Spécifications techniques (publiques)
   const waterproof = metadata.waterproof
   const batteryMah = metadata.battery_mah
   const batteryLife = metadata.battery_life
@@ -26,12 +25,11 @@ const ProductMetadata = ({ product }: ProductMetadataProps) => {
   const connectivity = metadata.connectivity
   const dimensions = metadata.dimensions
   const radarRange = metadata.radar_range_m
+  
+  // ✅ Informations B2B publiques
   const moq = metadata.moq
   const innovation = metadata.innovation
-  const priceMinUsd = metadata.price_min_usd
-  const priceMaxUsd = metadata.price_max_usd
 
-  const hasSupplierInfo = supplierName || supplierCountry || supplierCity
   const hasTechnicalSpecs =
     waterproof ||
     batteryMah ||
@@ -40,65 +38,15 @@ const ProductMetadata = ({ product }: ProductMetadataProps) => {
     connectivity ||
     dimensions ||
     radarRange
-  const hasB2BInfo = moq || priceMinUsd || priceMaxUsd
+  const hasB2BInfo = moq || innovation
 
   // Si aucune métadonnée pertinente, ne rien afficher
-  if (!hasSupplierInfo && !hasTechnicalSpecs && !hasB2BInfo) {
+  if (!hasTechnicalSpecs && !hasB2BInfo) {
     return null
   }
 
   return (
     <div className="flex flex-col gap-4 w-full mt-4">
-      {/* Fournisseur */}
-      {hasSupplierInfo && (
-        <Container className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200">
-          <div className="p-4">
-            <h3 className="text-sm font-bold text-neutral-950 mb-3 flex items-center gap-2">
-              🏭 Fournisseur
-            </h3>
-            <div className="space-y-2 text-sm">
-              {supplierName && (
-                <div className="flex items-start gap-2">
-                  <span className="text-neutral-600 min-w-[80px]">Nom:</span>
-                  <span className="font-medium text-neutral-950">
-                    {supplierName}
-                  </span>
-                </div>
-              )}
-              {(supplierCity || supplierCountry) && (
-                <div className="flex items-start gap-2">
-                  <span className="text-neutral-600 min-w-[80px]">
-                    Localisation:
-                  </span>
-                  <span className="text-neutral-800">
-                    {supplierCity}
-                    {supplierCity && supplierCountry && ", "}
-                    {supplierCountry}
-                  </span>
-                </div>
-              )}
-              {supplierWebsite && supplierWebsite !== "N/A" && (
-                <div className="flex items-start gap-2">
-                  <span className="text-neutral-600 min-w-[80px]">Site:</span>
-                  <a
-                    href={
-                      supplierWebsite.startsWith("http")
-                        ? supplierWebsite
-                        : `https://${supplierWebsite}`
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline"
-                  >
-                    {supplierWebsite}
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
-        </Container>
-      )}
-
       {/* Spécifications Techniques */}
       {hasTechnicalSpecs && (
         <Container className="bg-white border border-neutral-200">
@@ -180,21 +128,6 @@ const ProductMetadata = ({ product }: ProductMetadataProps) => {
                   </span>
                   <span className="font-bold text-green-700">
                     {moq} unités
-                  </span>
-                </div>
-              )}
-              {(priceMinUsd || priceMaxUsd) && (
-                <div className="flex items-start gap-2">
-                  <span className="text-neutral-600 min-w-[120px]">
-                    Prix indicatif:
-                  </span>
-                  <span className="text-neutral-800">
-                    {priceMinUsd && `$${priceMinUsd}`}
-                    {priceMinUsd && priceMaxUsd && " - "}
-                    {priceMaxUsd && `$${priceMaxUsd}`} USD
-                    <span className="text-xs text-neutral-500 ml-2">
-                      (contactez-nous pour devis)
-                    </span>
                   </span>
                 </div>
               )}
