@@ -323,26 +323,366 @@ export default async function seedDemoData({ container }: ExecArgs) {
     },
   });
 
+  // ========================================
+  // 🇫🇷 STRUCTURE DE CATÉGORIES B2B - SHOWROOMPRO
+  // ========================================
   const { result: categoryResult } = await createProductCategoriesWorkflow(
     container
   ).run({
     input: {
       product_categories: [
+        // ========================================
+        // 📱 TECH GRAND PUBLIC
+        // ========================================
+        {
+          name: "Tech Grand Public",
+          handle: "tech",
+          description: "Solutions technologiques innovantes pour le grand public : traqueurs, wearables, audio premium",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "📱",
+            display_order: 1,
+            b2b: {
+              moq_min: 10,
+              moq_max: 500,
+              price_range: "15-200€",
+              lead_time: "15-30 jours",
+              branding_available: true,
+              certifications: ["CE", "FCC", "RoHS"],
+            },
+          },
+        },
+        {
+          name: "Traqueurs & Find My",
+          handle: "tech/trackers-find-my",
+          description: "Traqueurs Bluetooth et compatibles Find My Network pour localiser objets et animaux",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "📍",
+            parent: "Tech Grand Public",
+            keywords: ["tracker", "find my", "bluetooth", "GPS", "localisation", "anti-perte"],
+            b2b: {
+              moq_min: 20,
+              moq_suggested: 50,
+              price_range: "15-45€",
+              lead_time: "20-25 jours",
+              customization: ["Logo gravé", "Emballage personnalisé", "Couleurs custom"],
+              target_markets: ["Tech accessories", "Pet care", "Travel"],
+            },
+          },
+        },
+        {
+          name: "Wearables & Montres Connectées",
+          handle: "tech/wearables",
+          description: "Montres connectées, bracelets fitness et wearables intelligents",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "⌚",
+            parent: "Tech Grand Public",
+            keywords: ["smartwatch", "fitness", "health", "wearable", "sport"],
+            b2b: {
+              moq_min: 10,
+              moq_suggested: 30,
+              price_range: "50-200€",
+              lead_time: "25-35 jours",
+              certifications: ["IP67/IP68", "CE", "FDA (si health)"],
+              customization: ["Cadrans custom", "Packaging premium", "App branding"],
+            },
+          },
+        },
+        {
+          name: "Lunettes AI & Smart Glasses",
+          handle: "tech/lunettes-ai",
+          description: "Lunettes intelligentes avec AI, audio intégré et réalité augmentée",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🕶️",
+            parent: "Tech Grand Public",
+            keywords: ["smart glasses", "AI", "audio", "augmented reality", "meta", "rayban"],
+            b2b: {
+              moq_min: 5,
+              moq_suggested: 20,
+              price_range: "120-350€",
+              lead_time: "30-45 jours",
+              innovation_level: "high",
+              target_markets: ["Fashion tech", "Enterprise AR", "Content creators"],
+            },
+          },
+        },
+        {
+          name: "Audio Open-Ear & ANC",
+          handle: "tech/audio",
+          description: "Écouteurs open-ear, ANC premium et audio haute fidélité",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🎧",
+            parent: "Tech Grand Public",
+            keywords: ["earbuds", "ANC", "open-ear", "bone conduction", "audio", "wireless"],
+            b2b: {
+              moq_min: 20,
+              moq_suggested: 100,
+              price_range: "35-150€",
+              lead_time: "20-30 jours",
+              certifications: ["Hi-Res Audio", "AptX", "IPX4+"],
+              customization: ["Case branding", "Couleurs", "App customization"],
+            },
+          },
+        },
+
+        // ========================================
+        // 🖼️ PLV NUMÉRIQUE & RETAIL
+        // ========================================
+        {
+          name: "PLV Numérique & Signalétique",
+          handle: "plv",
+          description: "Solutions d'affichage dynamique pour retail : hologrammes 3D, LED HDMI, light boxes",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🖼️",
+            display_order: 2,
+            b2b: {
+              moq_min: 1,
+              moq_max: 50,
+              price_range: "200-2000€",
+              lead_time: "30-60 jours",
+              branding_available: true,
+              installation_support: true,
+            },
+          },
+        },
+        {
+          name: "Hologrammes 3D & Ventilateurs LED",
+          handle: "plv/hologrammes-3d",
+          description: "Affichage holographique 3D par ventilateur LED pour retail et événementiel",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "✨",
+            parent: "PLV Numérique & Signalétique",
+            keywords: ["hologram", "3D", "LED fan", "advertising", "retail display", "wow effect"],
+            b2b: {
+              moq_min: 1,
+              moq_suggested: 5,
+              price_range: "300-800€",
+              lead_time: "35-45 jours",
+              customization: ["Contenu vidéo custom", "Logo integration", "Taille ajustable"],
+              target_markets: ["Retail", "Events", "Museums", "Luxury brands"],
+              technical_specs: {
+                sizes: ["42cm", "65cm", "100cm"],
+                resolution: "1024px ou plus",
+                wifi_app_control: true,
+              },
+            },
+          },
+        },
+        {
+          name: "Barres LED HDMI Temps Réel",
+          handle: "plv/barres-led-hdmi",
+          description: "Barres LED avec entrée HDMI pour affichage dynamique synchronisé en temps réel",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "💡",
+            parent: "PLV Numérique & Signalétique",
+            keywords: ["LED bar", "HDMI", "Govee", "Philips Hue", "ambient light", "gaming"],
+            b2b: {
+              moq_min: 10,
+              moq_suggested: 50,
+              price_range: "80-250€",
+              lead_time: "25-35 jours",
+              customization: ["Longueur custom", "App branding", "Packaging"],
+              target_markets: ["Gaming", "Home cinema", "Retail ambiance", "Streamers"],
+            },
+          },
+        },
+        {
+          name: "Light Boxes & Signalétique Lumineuse",
+          handle: "plv/light-boxes",
+          description: "Caissons lumineux LED pour signalétique et affichage publicitaire",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🔆",
+            parent: "PLV Numérique & Signalétique",
+            keywords: ["lightbox", "LED sign", "backlit", "signage", "retail", "storefront"],
+            b2b: {
+              moq_min: 5,
+              moq_suggested: 20,
+              price_range: "150-600€",
+              lead_time: "30-40 jours",
+              customization: ["Taille sur mesure", "Impression custom", "Montage mural/suspendu"],
+              target_markets: ["Retail", "Restaurant", "Real estate", "Events"],
+            },
+          },
+        },
+
+        // ========================================
+        // 🚴 MOBILITÉ & SÉCURITÉ
+        // ========================================
+        {
+          name: "Mobilité & Sécurité",
+          handle: "mobilite",
+          description: "Solutions de sécurité pour cyclistes et voyageurs intelligents",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🚴",
+            display_order: 3,
+            b2b: {
+              moq_min: 10,
+              moq_max: 200,
+              price_range: "40-300€",
+              lead_time: "25-40 jours",
+              waterproof: true,
+              certifications_required: ["IP65+", "CE"],
+            },
+          },
+        },
+        {
+          name: "Sécurité Vélo",
+          handle: "mobilite/securite-velo",
+          description: "Radars arrière, dashcams vélo, feux intelligents et accessoires de sécurité cycliste",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🚲",
+            parent: "Mobilité & Sécurité",
+            keywords: ["bike radar", "dashcam", "bike light", "cycling safety", "garmin varia"],
+            b2b: {
+              moq_min: 10,
+              moq_suggested: 30,
+              price_range: "60-250€",
+              lead_time: "30-40 jours",
+              waterproof: "IP65-IP67",
+              customization: ["Packaging", "Manual multilingue", "App co-branding"],
+              target_markets: ["Bike shops", "Sports retailers", "Urban mobility"],
+            },
+          },
+        },
+        {
+          name: "Accessoires Voyage Intelligents",
+          handle: "mobilite/voyage-intelligent",
+          description: "Valises connectées, trackers bagages, adaptateurs universels intelligents",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "✈️",
+            parent: "Mobilité & Sécurité",
+            keywords: ["luggage tracker", "travel adapter", "smart suitcase", "TSA", "USB-C PD"],
+            b2b: {
+              moq_min: 20,
+              moq_suggested: 100,
+              price_range: "25-180€",
+              lead_time: "25-35 jours",
+              certifications: ["TSA approved", "CE", "Flight safe"],
+              customization: ["Logo embossed", "Color options", "Retail packaging"],
+              target_markets: ["Travel retail", "Airport shops", "Corporate gifts"],
+            },
+          },
+        },
+
+        // ========================================
+        // 😁 BEAUTY & SMILE CARE
+        // ========================================
+        {
+          name: "Beauty & Smile Care",
+          handle: "beauty",
+          description: "Soins dentaires professionnels et solutions de blanchiment",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "😁",
+            display_order: 4,
+            b2b: {
+              moq_min: 50,
+              moq_max: 1000,
+              price_range: "8-120€",
+              lead_time: "20-35 jours",
+              fda_ce_compliant: true,
+              private_label: true,
+            },
+          },
+        },
+        {
+          name: "Blanchiment Dentaire",
+          handle: "beauty/blanchiment",
+          description: "Kits de blanchiment, bandes, gels et accessoires pour un sourire éclatant",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "✨",
+            parent: "Beauty & Smile Care",
+            keywords: ["teeth whitening", "whitening strips", "gel", "PAP", "peroxide-free"],
+            b2b: {
+              moq_min: 100,
+              moq_suggested: 500,
+              price_range: "8-35€",
+              lead_time: "25-35 jours",
+              certifications: ["CE", "FDA", "ISO 13485"],
+              private_label: true,
+              customization: ["Packaging custom", "Formule adaptée", "Branding complet"],
+              target_markets: ["Dental", "Beauty", "E-commerce", "Pharmacies"],
+            },
+          },
+        },
+        {
+          name: "Brosses à Dents Électriques & Appareils",
+          handle: "beauty/appareils-dentaires",
+          description: "Brosses à dents électriques LED, hydrojets dentaires et soins bucco-dentaires avancés",
+          is_active: true,
+          is_internal: false,
+          metadata: {
+            icon: "🦷",
+            parent: "Beauty & Smile Care",
+            keywords: ["electric toothbrush", "water flosser", "dental care", "oral irrigator", "LED therapy"],
+            b2b: {
+              moq_min: 20,
+              moq_suggested: 100,
+              price_range: "25-120€",
+              lead_time: "30-40 jours",
+              certifications: ["CE", "RoHS", "Waterproof IPX7"],
+              customization: ["Logo", "Couleurs", "Packaging premium"],
+              target_markets: ["Dental practices", "Beauty stores", "Wellness retailers"],
+            },
+          },
+        },
+        
+        // ========================================
+        // 🔄 COMPATIBILITÉ: Anciennes catégories pour produits existants
+        // ========================================
         {
           name: "Laptops",
+          handle: "tech/laptops",
+          description: "Ordinateurs portables et laptops professionnels",
           is_active: true,
+          metadata: { parent: "Tech Grand Public", legacy: true },
         },
         {
           name: "Accessories",
+          handle: "tech/accessories",
+          description: "Accessoires technologiques variés",
           is_active: true,
+          metadata: { parent: "Tech Grand Public", legacy: true },
         },
         {
           name: "Phones",
+          handle: "tech/phones",
+          description: "Smartphones et téléphones intelligents",
           is_active: true,
+          metadata: { parent: "Tech Grand Public", legacy: true },
         },
         {
           name: "Monitors",
+          handle: "tech/monitors",
+          description: "Écrans et moniteurs professionnels",
           is_active: true,
+          metadata: { parent: "Tech Grand Public", legacy: true },
         },
       ],
     },
