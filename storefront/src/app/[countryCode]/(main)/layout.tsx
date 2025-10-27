@@ -4,7 +4,7 @@ import { listCartFreeShippingPrices } from "@/lib/data/fulfillment"
 import { getBaseURL } from "@/lib/util/env"
 import CartMismatchBanner from "@/modules/layout/components/cart-mismatch-banner"
 import Footer from "@/modules/layout/templates/footer"
-import { NavigationHeader } from "@/modules/layout/templates/nav"
+import { ShowRoomProNav } from "@/modules/layout/templates/nav/showroompro-nav"
 import FreeShippingPriceNudge from "@/modules/shipping/components/free-shipping-price-nudge"
 import { StoreFreeShippingPrice } from "@/types/shipping-option/http"
 import { ArrowUpRightMini, ExclamationCircleSolid } from "@medusajs/icons"
@@ -25,7 +25,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
 
   return (
     <>
-      <NavigationHeader />
+      <ShowRoomProNav />
 
       {customer && cart && (
         <CartMismatchBanner customer={customer} cart={cart} />
