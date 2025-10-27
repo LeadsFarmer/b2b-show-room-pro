@@ -10,12 +10,12 @@ export default class MeilisearchModuleService {
   private client_: MeiliSearch
   private productIndexName_: string
 
-  constructor({ host, apiKey, productIndexName }: ModuleOptions) {
+  constructor(container: any, options: ModuleOptions) {
     this.client_ = new MeiliSearch({
-      host,
-      apiKey,
+      host: options.host,
+      apiKey: options.apiKey,
     })
-    this.productIndexName_ = productIndexName
+    this.productIndexName_ = options.productIndexName
   }
 
   async addProducts(products: any[]) {
