@@ -20,50 +20,31 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
-  modules: {
-    [COMPANY_MODULE]: {
+  modules: [
+    {
       resolve: "./modules/company",
+      key: COMPANY_MODULE,
     },
-    [QUOTE_MODULE]: {
+    {
       resolve: "./modules/quote",
+      key: QUOTE_MODULE,
     },
-    [APPROVAL_MODULE]: {
+    {
       resolve: "./modules/approval",
+      key: APPROVAL_MODULE,
     },
-    // Meilisearch pour la recherche de produits
-    ...(process.env.MEILISEARCH_HOST && process.env.MEILISEARCH_API_KEY ? {
-      [Modules.INDEX]: {
-        resolve: "@medusajs/medusa/search",
-        options: {
-          provider: "meilisearch",
-          options: {
-            config: {
-              host: process.env.MEILISEARCH_HOST,
-              apiKey: process.env.MEILISEARCH_API_KEY,
-            },
-            settings: {
-              products: {
-                indexSettings: {
-                  searchableAttributes: [
-                    "title",
-                    "description",
-                    "variant_sku",
-                  ],
-                  displayedAttributes: [
-                    "title",
-                    "description",
-                    "thumbnail",
-                    "handle",
-                  ],
-                },
-              },
-            },
-          },
-        },
+    // Meilisearch custom module pour la recherche
+    ...(process.env.MEILISEARCH_HOST && process.env.MEILISEARCH_API_KEY ? [{
+      resolve: "./src/modules/meilisearch",
+      options: {
+        host: process.env.MEILISEARCH_HOST,
+        apiKey: process.env.MEILISEARCH_API_KEY,
+        productIndexName: process.env.MEILISEARCH_PRODUCT_INDEX_NAME || "products",
       },
-    } : {}),
-    [Modules.FILE]: {
+    }] : []),
+    {
       resolve: "@medusajs/medusa/file",
+      key: Modules.FILE,
       options: {
         providers: [
           ...(process.env.MINIO_ENDPOINT && process.env.MINIO_ACCESS_KEY && process.env.MINIO_SECRET_KEY ? [{
@@ -86,34 +67,39 @@ module.exports = defineConfig({
         ],
       },
     },
-    ...(process.env.REDIS_URL ? {
-      [Modules.EVENT_BUS]: {
+    ...(process.env.REDIS_URL ? [
+      {
         resolve: "@medusajs/medusa/event-bus-redis",
+        key: Modules.EVENT_BUS,
         options: {
           redisUrl: process.env.REDIS_URL,
         },
       },
-      [Modules.CACHE]: {
+      {
         resolve: "@medusajs/medusa/cache-redis",
+        key: Modules.CACHE,
         options: {
           redisUrl: process.env.REDIS_URL,
         },
       },
-      [Modules.WORKFLOW_ENGINE]: {
+      {
         resolve: "@medusajs/medusa/workflow-engine-redis",
+        key: Modules.WORKFLOW_ENGINE,
         options: {
           redis: {
             url: process.env.REDIS_URL,
           },
         },
       },
-    } : {
-      [Modules.CACHE]: {
+    ] : [
+      {
         resolve: "@medusajs/medusa/cache-inmemory",
+        key: Modules.CACHE,
       },
-      [Modules.WORKFLOW_ENGINE]: {
+      {
         resolve: "@medusajs/medusa/workflow-engine-inmemory",
+        key: Modules.WORKFLOW_ENGINE,
       },
-    }),
-  },
+    ]),
+  ],
 });
