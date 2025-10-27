@@ -30,6 +30,38 @@ module.exports = defineConfig({
     [APPROVAL_MODULE]: {
       resolve: "./modules/approval",
     },
+    // Meilisearch pour la recherche de produits
+    ...(process.env.MEILISEARCH_HOST && process.env.MEILISEARCH_API_KEY ? {
+      [Modules.INDEX]: {
+        resolve: "@medusajs/medusa/search",
+        options: {
+          provider: "meilisearch",
+          options: {
+            config: {
+              host: process.env.MEILISEARCH_HOST,
+              apiKey: process.env.MEILISEARCH_API_KEY,
+            },
+            settings: {
+              products: {
+                indexSettings: {
+                  searchableAttributes: [
+                    "title",
+                    "description",
+                    "variant_sku",
+                  ],
+                  displayedAttributes: [
+                    "title",
+                    "description",
+                    "thumbnail",
+                    "handle",
+                  ],
+                },
+              },
+            },
+          },
+        },
+      },
+    } : {}),
     [Modules.FILE]: {
       resolve: "@medusajs/medusa/file",
       options: {

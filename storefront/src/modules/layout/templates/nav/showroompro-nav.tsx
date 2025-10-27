@@ -56,16 +56,19 @@ export async function ShowRoomProNav() {
           {/* Actions: Recherche + Devis + Connexion + Panier */}
           <div className="flex items-center gap-3">
             {/* Recherche */}
-            <div className="relative hidden small:flex">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
+            <LocalizedClientLink href="/search" className="relative hidden small:flex">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
               <input
-                disabled
                 type="text"
                 placeholder="Rechercher..."
-                className="bg-neutral-100 text-neutral-900 pl-10 pr-4 py-2 rounded-full text-sm w-48 hover:cursor-not-allowed"
-                title="Installer un fournisseur de recherche pour activer la recherche de produits"
+                className="bg-neutral-100 text-neutral-900 pl-10 pr-4 py-2 rounded-full text-sm w-48 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.location.href = '/search'
+                }}
+                readOnly
               />
-            </div>
+            </LocalizedClientLink>
 
             <div className="h-5 w-px bg-neutral-300 hidden small:block" />
 
