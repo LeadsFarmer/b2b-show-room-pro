@@ -84,9 +84,11 @@ export default async function PaginatedProducts({
             )
           })
         ) : (
-          <Container className="text-center text-sm text-neutral-500">
-            Aucun produit trouvé pour cette catégorie.
-          </Container>
+          <li className="col-span-full">
+            <Container className="text-center text-sm text-neutral-500">
+              Aucun produit trouvé pour cette catégorie.
+            </Container>
+          </li>
         )}
       </ul>
       {totalPages > 1 && (

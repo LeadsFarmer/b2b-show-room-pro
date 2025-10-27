@@ -35,13 +35,13 @@ const ApprovalSettingsCard = ({
     setIsSaving(true)
     await updateApprovalSettings(company.id, requiresAdminApproval).catch(
       () => {
-        toast.error("Error updating approval settings")
+        toast.error("Erreur lors de la mise à jour des paramètres d'approbation")
       }
     )
     setIsSaving(false)
     setIsEditing(false)
 
-    toast.success("Company updated")
+    toast.success("Entreprise mise à jour")
   }
 
   return (
@@ -61,8 +61,8 @@ const ApprovalSettingsCard = ({
           <TooltipProvider>
             <div className="flex flex-col gap-y-2">
               <Text className="flex items-center gap-x-2 font-medium text-neutral-950">
-                Requires Admin Approval
-                <Tooltip content="This setting determines whether orders require admin approval before being processed. If enabled, orders will be held until an admin approves them.">
+                Nécessite l'approbation de l'administrateur
+                <Tooltip content="Ce paramètre détermine si les commandes nécessitent l'approbation d'un administrateur avant d'être traitées. Si activé, les commandes seront en attente jusqu'à ce qu'un administrateur les approuve.">
                   <InformationCircleSolid className="w-4 h-4" />
                 </Tooltip>
               </Text>
@@ -76,23 +76,23 @@ const ApprovalSettingsCard = ({
                   />
                 ) : (
                   <Text className="text-neutral-500">
-                    {requiresAdminApproval ? "Yes" : "No"}
+                    {requiresAdminApproval ? "Oui" : "Non"}
                   </Text>
                 )}
               </div>
             </div>
             <div className="flex flex-col gap-y-2">
               <Text className="flex items-center gap-x-2 font-medium text-neutral-950">
-                Requires Sales Manager Approval
-                <Tooltip content="This setting determines whether orders require sales manager approval before being processed. If enabled, orders will be held until a sales manager approves them.">
+                Nécessite l'approbation du responsable des ventes
+                <Tooltip content="Ce paramètre détermine si les commandes nécessitent l'approbation d'un responsable des ventes avant d'être traitées. Si activé, les commandes seront en attente jusqu'à ce qu'un responsable des ventes les approuve.">
                   <InformationCircleSolid className="w-4 h-4" />
                 </Tooltip>
               </Text>
               <div className="flex items-center gap-x-2 h-3">
                 <Text className="text-neutral-500">
                   {approval_settings?.requires_sales_manager_approval
-                    ? "Yes"
-                    : "No"}
+                    ? "Oui"
+                    : "Non"}
                 </Text>
               </div>
             </div>
@@ -108,19 +108,19 @@ const ApprovalSettingsCard = ({
                   onClick={() => setIsEditing(false)}
                   disabled={isSaving}
                 >
-                  Cancel
+                  Annuler
                 </Button>
                 <Button
                   variant="primary"
                   onClick={handleSave}
                   isLoading={isSaving}
                 >
-                  Save
+                  Enregistrer
                 </Button>
               </>
             ) : (
               <Button variant="secondary" onClick={() => setIsEditing(true)}>
-                Edit
+                Modifier
               </Button>
             )}
           </div>
