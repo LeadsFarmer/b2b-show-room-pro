@@ -38,6 +38,8 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@stripe/react-stripe-js": "^1.7.2",
     "@stripe/stripe-js": "^1.29.0",
+    "@meilisearch/instant-meilisearch": "^0.19.3",
+    "react-instantsearch": "^7.13.3",
     "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
