@@ -9,7 +9,7 @@ export default async function productCreatedHandler({
   container,
 }: SubscriberArgs<{ id: string }>) {
   const productModuleService = container.resolve(Modules.PRODUCT)
-  const meilisearchService = container.resolve("meilisearchService")
+  const meilisearchService: any = container.resolve("meilisearchService")
 
   // Récupérer le produit complet avec ses variantes et catégories
   const product = await productModuleService.retrieveProduct(data.id, {

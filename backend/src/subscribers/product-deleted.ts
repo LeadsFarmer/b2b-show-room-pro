@@ -7,7 +7,7 @@ export default async function productDeletedHandler({
   event: { data },
   container,
 }: SubscriberArgs<{ id: string }>) {
-  const meilisearchService = container.resolve("meilisearchService")
+  const meilisearchService: any = container.resolve("meilisearchService")
 
   // Supprimer de Meilisearch
   await meilisearchService.deleteProducts([data.id])
