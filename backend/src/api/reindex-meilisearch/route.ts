@@ -4,13 +4,15 @@ import { Modules } from "@medusajs/framework/utils"
 // ⚠️ ENDPOINT DE DEV UNIQUEMENT - SANS AUTHENTIFICATION
 // À SUPPRIMER EN PRODUCTION !
 
-export async function POST(
+export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
   try {
     const productModuleService = req.scope.resolve(Modules.PRODUCT)
     const meilisearchService: any = req.scope.resolve("meilisearchService")
+
+    console.log("🔍 Starting Meilisearch reindexation...")
 
     // Récupérer tous les produits
     const products = await productModuleService.listProducts(
@@ -19,6 +21,8 @@ export async function POST(
         relations: ["variants", "categories", "images"],
       }
     )
+
+    console.log(`📦 Found ${products.length} products to index`)
 
     if (!products || products.length === 0) {
       res.json({
@@ -55,12 +59,17 @@ export async function POST(
     // Réindexer tous les produits
     await meilisearchService.reindexProducts(searchableProducts)
 
-    console.log(`✅ Reindexed ${searchableProducts.length} products in Meilisearch`)
+    console.log(`✅ Successfully reindexed ${searchableProducts.length} products in Meilisearch`)
 
     res.json({
       success: true,
       message: `Successfully reindexed ${searchableProducts.length} products`,
       count: searchableProducts.length,
+      products: searchableProducts.map(p => ({
+        id: p.id,
+        title: p.title,
+        handle: p.handle,
+      })),
     })
   } catch (error: any) {
     console.error("❌ Meilisearch reindex error:", error)
@@ -68,6 +77,14 @@ export async function POST(
       success: false,
       message: "Error reindexing products",
       error: error.message,
+      stack: error.stack,
     })
   }
+}
+
+export async function POST(
+  req: MedusaRequest,
+  res: MedusaResponse
+): Promise<void> {
+  return GET(req, res)
 }
